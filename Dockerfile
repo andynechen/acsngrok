@@ -1,6 +1,7 @@
 FROM    alpine
 
 RUN     apk add --no-cache --virtual .bootstrap-deps ca-certificates openssh-server openrc && \
+        mkdir -p /run/openrc && \
         touch /run/openrc/softlevel && \
         rc-update add sshd && \
         rc-status && \
