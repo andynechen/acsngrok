@@ -13,8 +13,10 @@ LABEL   maintainer="Dmitry Shkoliar @shkoliar"
 
 COPY    --from=ngrok /ngrok /bin/ngrok
 COPY    start.sh /
-        
-RUN     mkdir -p /home/ngrok /home/ngrok/.ngrok2 && \
+
+RUN     echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config && \
+        echo root:Acs^810606|chpasswd && \   
+        mkdir -p /home/ngrok /home/ngrok/.ngrok2 && \
 		printf 'web_addr: 0.0.0.0:4551' > /home/ngrok/.ngrok2/ngrok.yml && \
 		addgroup -g 4551 -S ngrok && \
         adduser -u 4551 -S ngrok -G ngrok -h /home/ngrok -s /bin/ash && \
