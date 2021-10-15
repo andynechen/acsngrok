@@ -8,7 +8,7 @@ if [[ -n "$PARAMS" ]]; then
     CMD="$CMD $PARAMS"
 else
     PROTOCOL=${PROTOCOL:-http}
-    PORT=${PORT:-80}
+    PORT=${PORT:-22}
 
     CMD="$CMD $PROTOCOL"
 
