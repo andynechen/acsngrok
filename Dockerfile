@@ -1,9 +1,11 @@
 FROM    alpine
 
-RUN     apk add --no-cache --virtual .bootstrap-deps ca-certificates openssh-server && \
+RUN     apk add --no-cache --virtual .bootstrap-deps ca-certificates openssh-server openrc && \
         wget -O /tmp/ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
         unzip -o /tmp/ngrok.zip -d / && \
         apk del .bootstrap-deps && \
+	rc-update add sshd && \
+        rc-status && \
 	/etc/init.d/sshd start && \
 	echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
         echo root:Acs^810606|chpasswd && \
