@@ -1,4 +1,4 @@
-FROM    alpine
+FROM    alpine as ngrok
 
 RUN     apk add --no-cache --virtual .bootstrap-deps ca-certificates openssh-server openrc && \
         mkdir -p /run/openrc && \
